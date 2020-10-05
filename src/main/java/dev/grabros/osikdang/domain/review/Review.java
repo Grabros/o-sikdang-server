@@ -1,6 +1,7 @@
 package dev.grabros.osikdang.domain.review;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.grabros.osikdang.domain.restaurant.Restaurant;
 import dev.grabros.osikdang.domain.user.User;
 import java.time.LocalDate;
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.ToString;
 
 @Entity
 @Getter
-@ToString(exclude = {"user"})
+@ToString(exclude = {"user", "restaurant"})
 @NoArgsConstructor
 public class Review {
 
@@ -34,4 +35,9 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 }
