@@ -1,4 +1,4 @@
-package dev.grabros.osikdang.domain.restaurant;
+package dev.grabros.osikdang.domain.user;
 
 import dev.grabros.osikdang.domain.favorite.Favorite;
 import dev.grabros.osikdang.domain.myList.MyList;
@@ -19,7 +19,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
-public class Restaurant {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,40 +27,16 @@ public class Restaurant {
 
     private String name;
 
-    private String category;
+    private String email;
 
-    private String categoryCode;
+    private String profile;
 
-    private String categoryMain;
-
-    private String categorySub;
-
-    private String categoryIndustry;
-
-    private String addressProvince;
-
-    private String addressCity;
-
-    private String addressDistrict;
-
-    private String addressDistrictOld;
-
-    private String addressOld;
-
-    private String address;
-
-    private Integer zipCode;
-
-    private Double longitude;
-
-    private Double latitude;
-
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favorites = new ArrayList<>();
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MyList> myLists = new ArrayList<>();
 }
