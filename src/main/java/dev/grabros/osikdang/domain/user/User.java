@@ -1,6 +1,7 @@
 package dev.grabros.osikdang.domain.user;
 
 import dev.grabros.osikdang.domain.favorite.Favorite;
+import dev.grabros.osikdang.domain.myList.MyList;
 import dev.grabros.osikdang.domain.review.Review;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,4 +36,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favorites = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MyList> myLists = new ArrayList<>();
 }

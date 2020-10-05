@@ -1,6 +1,7 @@
 package dev.grabros.osikdang.domain.restaurant;
 
 import dev.grabros.osikdang.domain.favorite.Favorite;
+import dev.grabros.osikdang.domain.myList.MyList;
 import dev.grabros.osikdang.domain.review.Review;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +55,12 @@ public class Restaurant {
 
     private Double latitude;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favorites = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MyList> myLists = new ArrayList<>();
 }
