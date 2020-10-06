@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.locationtech.jts.geom.Point;
 
 @Entity
 @Getter
@@ -51,9 +52,7 @@ public class Restaurant {
 
     private Integer zipCode;
 
-    private Double longitude;
-
-    private Double latitude;
+    private Point point;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
