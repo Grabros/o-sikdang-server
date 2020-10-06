@@ -35,7 +35,8 @@ public class RestaurantService {
                 + "r.category, r.category_code, r.category_industry, r.category_main, r.category_sub, "
                 + "r.point, r.name, r.zip_code "
                 + "FROM restaurant AS r "
-                + "WHERE MBRContains(ST_LINESTRINGFROMTEXT(" + pointFormat + ", r.point)", Restaurant.class);
+                + "WHERE MBRContains(ST_LINESTRINGFROMTEXT(" + pointFormat + ", r.point)", Restaurant.class)
+            .setMaxResults(10);
 
         List<Restaurant> restaurants = query.getResultList();
         return restaurants;
