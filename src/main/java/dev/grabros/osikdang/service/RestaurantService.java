@@ -4,7 +4,10 @@ import dev.grabros.osikdang.domain.restaurant.Restaurant;
 import dev.grabros.osikdang.geometry.Direction;
 import dev.grabros.osikdang.geometry.GeometryUtil;
 import dev.grabros.osikdang.geometry.Location;
+import dev.grabros.osikdang.repository.RestaurantRepository;
+import dev.grabros.osikdang.web.dto.RestaurantResponse;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class RestaurantService {
 
+    private final RestaurantRepository restaurantRepository;
     private final EntityManager em;
 
     @Transactional(readOnly = true)
@@ -40,5 +44,11 @@ public class RestaurantService {
 
         List<Restaurant> restaurants = query.getResultList();
         return restaurants;
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantResponse> getCategorizedRestaurantsSortedByRating(String category) {
+        List<Restaurant> restaurants = restaurantRepository.findAllByCategoryMain(category);
+        return restaurants.stream().map(r -> RestaurantResponse.of(r)).collect(Collectors.toList());
     }
 }
