@@ -1,6 +1,6 @@
 package dev.grabros.osikdang.web.dto;
 
-import dev.grabros.osikdang.domain.restaurant.Restaurant;
+import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

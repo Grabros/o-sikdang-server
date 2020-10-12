@@ -1,8 +1,8 @@
 package dev.grabros.osikdang.service;
 
-import dev.grabros.osikdang.domain.restaurant.Restaurant;
-import dev.grabros.osikdang.repository.RestaurantGeometryRepository;
-import dev.grabros.osikdang.repository.RestaurantRepository;
+import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
+import dev.grabros.osikdang.domain.repository.RestaurantGeometryRepository;
+import dev.grabros.osikdang.domain.repository.RestaurantRepository;
 import dev.grabros.osikdang.web.dto.RestaurantResponse;
 import java.util.List;
 import java.util.stream.Collectors;

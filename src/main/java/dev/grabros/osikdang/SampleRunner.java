@@ -1,6 +1,6 @@
 package dev.grabros.osikdang;
 
-import dev.grabros.osikdang.domain.restaurant.Restaurant;
+import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
 import dev.grabros.osikdang.service.RestaurantService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

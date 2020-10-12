@@ -1,9 +1,9 @@
-package dev.grabros.osikdang.repository;
+package dev.grabros.osikdang.domain.repository;
 
-import dev.grabros.osikdang.domain.restaurant.Restaurant;
-import dev.grabros.osikdang.geometry.Direction;
-import dev.grabros.osikdang.geometry.GeometryUtil;
-import dev.grabros.osikdang.geometry.Location;
+import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
+import dev.grabros.osikdang.global.util.geometry.Direction;
+import dev.grabros.osikdang.global.util.geometry.GeometryUtil;
+import dev.grabros.osikdang.global.util.geometry.Location;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

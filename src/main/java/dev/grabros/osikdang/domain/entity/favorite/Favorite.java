@@ -1,9 +1,8 @@
-package dev.grabros.osikdang.domain.myList;
+package dev.grabros.osikdang.domain.entity.favorite;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.grabros.osikdang.domain.restaurant.Restaurant;
-import dev.grabros.osikdang.domain.user.User;
-import java.time.LocalDate;
+import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
+import dev.grabros.osikdang.domain.entity.user.User;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,15 +18,11 @@ import lombok.ToString;
 @Getter
 @ToString(exclude = {"user", "restaurant"})
 @NoArgsConstructor
-public class MyList {
+public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String feed;
-
-    private LocalDate modifiedTime;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

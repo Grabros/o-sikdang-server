@@ -1,6 +1,6 @@
-package dev.grabros.osikdang.repository;
+package dev.grabros.osikdang.domain.repository;
 
-import dev.grabros.osikdang.domain.restaurant.Restaurant;
+import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
