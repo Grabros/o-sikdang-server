@@ -62,4 +62,8 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MyList> myLists = new ArrayList<>();
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
 }
