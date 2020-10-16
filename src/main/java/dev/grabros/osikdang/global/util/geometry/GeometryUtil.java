@@ -1,4 +1,4 @@
-package dev.grabros.osikdang.geometry;
+package dev.grabros.osikdang.global.util.geometry;
 
 /**
  * Haversine Formula

@@ -1,8 +1,8 @@
-package dev.grabros.osikdang.domain.restaurant;
+package dev.grabros.osikdang.domain.entity.restaurant;
 
-import dev.grabros.osikdang.domain.favorite.Favorite;
-import dev.grabros.osikdang.domain.myList.MyList;
-import dev.grabros.osikdang.domain.review.Review;
+import dev.grabros.osikdang.domain.entity.favorite.Favorite;
+import dev.grabros.osikdang.domain.entity.myList.MyList;
+import dev.grabros.osikdang.domain.entity.review.Review;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -62,4 +62,8 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MyList> myLists = new ArrayList<>();
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
 }

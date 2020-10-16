@@ -1,8 +1,8 @@
-package dev.grabros.osikdang.domain.review;
+package dev.grabros.osikdang.domain.entity.review;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.grabros.osikdang.domain.restaurant.Restaurant;
-import dev.grabros.osikdang.domain.user.User;
+import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
+import dev.grabros.osikdang.domain.entity.user.User;
 import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
