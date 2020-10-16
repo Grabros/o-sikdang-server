@@ -7,6 +7,10 @@ import dev.grabros.osikdang.web.dto.RestaurantResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,9 +28,14 @@ public class RestaurantService {
 //        return nearByRestaurants.stream().map(r -> RestaurantResponse.of(r)).collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<RestaurantResponse> getCategorizedRestaurantsSortedByRating(String category) {
-        List<Restaurant> restaurants = restaurantRepository.findAllByCategoryMain(category);
+        Page<Restaurant> restaurants = restaurantRepository.findAllByCategoryMain(category, getPageRequest(0, 7));
         return restaurants.stream().map(r -> RestaurantResponse.of(r)).collect(Collectors.toList());
+    }
+
+    private PageRequest getPageRequest(int page, int size) {
+        Sort sort = Sort.by(Direction.ASC, "name");
+        return PageRequest.of(page, size, sort);
     }
 }
