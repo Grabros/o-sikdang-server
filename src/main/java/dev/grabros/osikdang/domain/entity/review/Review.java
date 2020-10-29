@@ -27,7 +27,7 @@ public class Review {
 
     private String content;
 
-    private Float rating;
+    private Double rating;
 
     private LocalDate modifiedTime;
 
