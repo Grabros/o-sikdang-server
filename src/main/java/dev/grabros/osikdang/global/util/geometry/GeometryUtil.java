@@ -17,7 +17,7 @@ public class GeometryUtil {
         Double latitude = Math.asin(sin(radianLatitude) * cos(distanceRadius) +
             cos(radianLatitude) * sin(distanceRadius) * cos(radianAngle));
         Double longitude = radianLongitude + Math.atan2(sin(radianAngle) * sin(distanceRadius) *
-                cos(radianLatitude), cos(distanceRadius) - sin(radianLatitude) * sin(latitude));
+            cos(radianLatitude), cos(distanceRadius) - sin(radianLatitude) * sin(latitude));
 
         longitude = normalizeLongitude(longitude);
         return new Location(toDegree(latitude), toDegree(longitude));

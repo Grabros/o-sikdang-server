@@ -31,7 +31,7 @@ public class RestaurantGeometryRepository {
         Query query = em.createNativeQuery("SELECT r.id, r.address, r.address_city, "
             + "r.address_district, r.address_district_old, r.address_old, r.address_province, "
             + "r.category, r.category_code, r.category_industry, r.category_main, r.category_sub, "
-            + "r.point, r.name, r.zip_code "
+            + "r.point, r.name, r.zip_code, r.rating "
             + "FROM restaurant AS r "
             + "WHERE MBRContains(ST_LINESTRINGFROMTEXT(" + pointFormat + ", r.point)", Restaurant.class)
             .setMaxResults(10);

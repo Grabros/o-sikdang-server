@@ -54,6 +54,8 @@ public class Restaurant {
 
     private Point point;
 
+    private Double rating;
+
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
