@@ -5,6 +5,7 @@ import dev.grabros.osikdang.domain.entity.myList.MyList;
 import dev.grabros.osikdang.domain.entity.review.Review;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -67,5 +68,9 @@ public class Restaurant {
 
     public void addReview(Review review) {
         this.reviews.add(review);
+    }
+
+    public void adjustAverageRating() {
+        this.rating = reviews.stream().collect(Collectors.averagingDouble(Review::getRating));
     }
 }
