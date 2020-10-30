@@ -78,7 +78,7 @@ public class Restaurant {
     /**
      * unit : km
      */
-    public double getDistance(Double x, Double y) {
-        return point.getCoordinate().distance(new Coordinate(x, y)) * 100;
+    public double getDistance(Coordinate coordinate) {
+        return point.getCoordinate().distance(coordinate) * 100;
     }
 }

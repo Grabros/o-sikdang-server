@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.locationtech.jts.geom.Coordinate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -16,11 +17,11 @@ public class RestaurantGeometryRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Restaurant> getNearByRestaurants(Double latitude, Double longitude, Double distance) {
+    public List<Restaurant> getNearByRestaurants(Coordinate coordinate, Double distance) {
         Location northEast = GeometryUtil
-            .calculate(latitude, longitude, distance, Direction.NORTHEAST.getBearing());
+            .calculate(coordinate.x, coordinate.y, distance, Direction.NORTHEAST.getBearing());
         Location southWest = GeometryUtil
-            .calculate(latitude, longitude, distance, Direction.SOUTHWEST.getBearing());
+            .calculate(coordinate.x, coordinate.y, distance, Direction.SOUTHWEST.getBearing());
 
         double x1 = northEast.getLatitude();
         double y1 = northEast.getLongitude();
