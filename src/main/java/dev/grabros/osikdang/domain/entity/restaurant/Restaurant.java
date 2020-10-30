@@ -5,6 +5,7 @@ import dev.grabros.osikdang.domain.entity.myList.MyList;
 import dev.grabros.osikdang.domain.entity.review.Review;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Point;
 
 @Entity
@@ -54,6 +56,8 @@ public class Restaurant {
 
     private Point point;
 
+    private Double rating;
+
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
@@ -65,5 +69,16 @@ public class Restaurant {
 
     public void addReview(Review review) {
         this.reviews.add(review);
+    }
+
+    public void adjustAverageRating() {
+        this.rating = reviews.stream().collect(Collectors.averagingDouble(Review::getRating));
+    }
+
+    /**
+     * unit : km
+     */
+    public double getDistance(Coordinate coordinate) {
+        return point.getCoordinate().distance(coordinate) * 100;
     }
 }

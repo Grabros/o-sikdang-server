@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.locationtech.jts.geom.Coordinate;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -13,14 +14,13 @@ public class RestaurantResponse {
     private Long id;
     private String name;
     private String categoryMain;
-    private Float rating;
+    private Double rating;
     private int ratingCount;
     private Double distance;
     private String image;
 
     @Builder
-    public RestaurantResponse(Long id, String name, String categoryMain, Float rating,
-        int ratingCount,
+    public RestaurantResponse(Long id, String name, String categoryMain, Double rating, int ratingCount,
         Double distance, String image) {
         this.id = id;
         this.name = name;
@@ -31,14 +31,14 @@ public class RestaurantResponse {
         this.image = image;
     }
 
-    public static RestaurantResponse of(Restaurant restaurant) {
+    public static RestaurantResponse of(Restaurant restaurant, Coordinate coordinate) {
         return RestaurantResponse.builder()
             .id(restaurant.getId())
             .name(restaurant.getName())
             .categoryMain(restaurant.getCategoryMain())
-            .rating(restaurant.getRatingAverage())
+            .rating(restaurant.getRating())
             .ratingCount(restaurant.getReviews().size())
-            .distance(0.0)
+            .distance(restaurant.getDistance(coordinate))
             .image(null)
             .build();
     }
