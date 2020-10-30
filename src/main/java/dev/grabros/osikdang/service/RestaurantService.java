@@ -28,16 +28,14 @@ public class RestaurantService {
     public List<Restaurant> getNearByRestaurants(Double latitude, Double longitude, Double distance) {
         Coordinate coordinate = new Coordinate(latitude, longitude);
         List<Restaurant> nearByRestaurants = restaurantGeometryRepository.getNearByRestaurants(coordinate, distance);
-        System.out.println(">>>> " + nearByRestaurants.get(0).getDistance(coordinate));
-
         return nearByRestaurants;
 //        return nearByRestaurants.stream().map(r -> RestaurantResponse.of(r)).collect(Collectors.toList());
     }
 
     @Transactional
-    public List<RestaurantResponse> getCategorizedRestaurantsSortedByRating(String category) {
+    public List<RestaurantResponse> getCategorizedRestaurantsSortedByRating(String category, Coordinate coordinate) {
         Page<Restaurant> restaurants = restaurantRepository.findAllByCategoryMain(category, getPageRequest(0, 7));
-        return restaurants.stream().map(r -> RestaurantResponse.of(r)).collect(Collectors.toList());
+        return restaurants.stream().map(r -> RestaurantResponse.of(r, coordinate)).collect(Collectors.toList());
     }
 
     private PageRequest getPageRequest(int page, int size) {

@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.locationtech.jts.geom.Coordinate;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,14 +31,14 @@ public class RestaurantResponse {
         this.image = image;
     }
 
-    public static RestaurantResponse of(Restaurant restaurant) {
+    public static RestaurantResponse of(Restaurant restaurant, Coordinate coordinate) {
         return RestaurantResponse.builder()
             .id(restaurant.getId())
             .name(restaurant.getName())
             .categoryMain(restaurant.getCategoryMain())
             .rating(restaurant.getRating())
             .ratingCount(restaurant.getReviews().size())
-            .distance(0.0)
+            .distance(restaurant.getDistance(coordinate))
             .image(null)
             .build();
     }
