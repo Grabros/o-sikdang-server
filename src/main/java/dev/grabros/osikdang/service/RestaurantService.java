@@ -26,6 +26,9 @@ public class RestaurantService {
     @Transactional(readOnly = true)
     public List<Restaurant> getNearByRestaurants(Double latitude, Double longitude, Double distance) {
         List<Restaurant> nearByRestaurants = restaurantGeometryRepository.getNearByRestaurants(latitude, longitude, distance);
+
+        System.out.println(">>>> " + nearByRestaurants.get(0).getDistance(37.489672, 127.024977));
+
         return nearByRestaurants;
 //        return nearByRestaurants.stream().map(r -> RestaurantResponse.of(r)).collect(Collectors.toList());
     }

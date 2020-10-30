@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Point;
 
 @Entity
@@ -72,5 +73,12 @@ public class Restaurant {
 
     public void adjustAverageRating() {
         this.rating = reviews.stream().collect(Collectors.averagingDouble(Review::getRating));
+    }
+
+    /**
+     * unit : km
+     */
+    public double getDistance(Double x, Double y) {
+        return point.getCoordinate().distance(new Coordinate(x, y)) * 100;
     }
 }
