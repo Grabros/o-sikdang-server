@@ -19,11 +19,22 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
+    @GetMapping("")
+    public ResponseEntity<RestaurantResponse> viewNearByRestaurants(
+        @RequestParam(value = "distance", required = false, defaultValue = "300") Double distance,
+        @RequestParam(value = "x", required = false, defaultValue = "0") Double x,
+        @RequestParam(value = "y", required = false, defaultValue = "0") Double y) {
+
+        return new ResponseEntity(
+            restaurantService.getNearByRestaurants(new Coordinate(x, y), distance), HttpStatus.OK);
+    }
+
     @GetMapping("/{category}")
     public ResponseEntity<RestaurantResponse> viewCategorizedRestaurantsSortedByRating(
         @PathVariable String category,
         @RequestParam(value = "x", required = false, defaultValue = "0") Double x,
         @RequestParam(value = "y", required = false, defaultValue = "0") Double y) {
+
         return new ResponseEntity(
             restaurantService.getCategorizedRestaurantsSortedByRating(category, new Coordinate(x, y)), HttpStatus.OK);
     }

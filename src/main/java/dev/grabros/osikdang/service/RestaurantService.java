@@ -25,11 +25,9 @@ public class RestaurantService {
     private final RestaurantGeometryRepository restaurantGeometryRepository;
 
     @Transactional(readOnly = true)
-    public List<Restaurant> getNearByRestaurants(Double latitude, Double longitude, Double distance) {
-        Coordinate coordinate = new Coordinate(latitude, longitude);
+    public List<RestaurantResponse> getNearByRestaurants(Coordinate coordinate, Double distance) {
         List<Restaurant> nearByRestaurants = restaurantGeometryRepository.getNearByRestaurants(coordinate, distance);
-        return nearByRestaurants;
-//        return nearByRestaurants.stream().map(r -> RestaurantResponse.of(r)).collect(Collectors.toList());
+        return nearByRestaurants.stream().map(r -> RestaurantResponse.of(r, coordinate)).collect(Collectors.toList());
     }
 
     @Transactional
