@@ -21,7 +21,7 @@ public class RestaurantController {
 
     @GetMapping("")
     public ResponseEntity<RestaurantResponse> viewNearByRestaurants(
-        @RequestParam(value = "distance", required = false, defaultValue = "300") Double distance,
+        @RequestParam(value = "distance", required = false, defaultValue = "0.5") Double distance,
         @RequestParam(value = "x", required = false, defaultValue = "0") Double x,
         @RequestParam(value = "y", required = false, defaultValue = "0") Double y) {
 
