@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     Page<Restaurant> findAllByCategoryMain(String category, Pageable pageable);
+
+    Page<Restaurant> findAllByAddressDistrict(String district, Pageable pageable);
 }
