@@ -38,4 +38,9 @@ public class RestaurantController {
         return new ResponseEntity(
             restaurantService.getCategorizedRestaurantsSortedByRating(category, new Coordinate(x, y)), HttpStatus.OK);
     }
+
+    @GetMapping("/district/{district}")
+    public ResponseEntity<RestaurantResponse> viewNearByRestaurantsByDistrict(@PathVariable String district) {
+        return new ResponseEntity(restaurantService.getNearByRestaurantsByDistrict(district), HttpStatus.OK);
+    }
 }
