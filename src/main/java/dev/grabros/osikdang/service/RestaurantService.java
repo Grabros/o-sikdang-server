@@ -1,5 +1,6 @@
 package dev.grabros.osikdang.service;
 
+import dev.grabros.osikdang.domain.entity.restaurant.CategoryCode;
 import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
 import dev.grabros.osikdang.domain.repository.RestaurantGeometryRepository;
 import dev.grabros.osikdang.domain.repository.RestaurantRepository;
@@ -42,7 +43,8 @@ public class RestaurantService {
     }
 
     @Transactional(readOnly = true)
-    public List<RestaurantResponse> getCategorizedRestaurantsSortedByRating(String category, Coordinate coordinate) {
+    public List<RestaurantResponse> getCategorizedRestaurantsSortedByRating(String categoryCode, Coordinate coordinate) {
+        String category = CategoryCode.getValueOf(categoryCode);
         Page<Restaurant> restaurants = restaurantRepository
             .findAllByCategoryMain(category, getSortedPageRequest(0, 7));
         return restaurants.stream()

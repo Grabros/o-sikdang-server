@@ -29,14 +29,14 @@ public class RestaurantController {
             restaurantService.getNearByRestaurants(new Coordinate(x, y), distance), HttpStatus.OK);
     }
 
-    @GetMapping("/{category}")
+    @GetMapping("/category/{categoryCode}")
     public ResponseEntity<RestaurantResponse> viewCategorizedRestaurantsSortedByRating(
-        @PathVariable String category,
+        @PathVariable String categoryCode,
         @RequestParam(value = "x", required = false, defaultValue = "0") Double x,
         @RequestParam(value = "y", required = false, defaultValue = "0") Double y) {
 
         return new ResponseEntity(
-            restaurantService.getCategorizedRestaurantsSortedByRating(category, new Coordinate(x, y)), HttpStatus.OK);
+            restaurantService.getCategorizedRestaurantsSortedByRating(categoryCode, new Coordinate(x, y)), HttpStatus.OK);
     }
 
     @GetMapping("/district/{district}")
