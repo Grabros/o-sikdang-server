@@ -13,6 +13,7 @@ public class RestaurantResponse {
 
     private Long id;
     private String name;
+    private String addressDistrict;
     private String categoryMain;
     private Double rating;
     private int ratingCount;
@@ -20,10 +21,11 @@ public class RestaurantResponse {
     private String image;
 
     @Builder
-    public RestaurantResponse(Long id, String name, String categoryMain, Double rating, int ratingCount,
-        Double distance, String image) {
+    public RestaurantResponse(Long id, String name, String addressDistrict, String categoryMain,
+        Double rating, int ratingCount, Double distance, String image) {
         this.id = id;
         this.name = name;
+        this.addressDistrict = addressDistrict;
         this.categoryMain = categoryMain;
         this.rating = rating;
         this.ratingCount = ratingCount;
@@ -35,6 +37,7 @@ public class RestaurantResponse {
         return RestaurantResponse.builder()
             .id(restaurant.getId())
             .name(restaurant.getName())
+            .addressDistrict(restaurant.getAddressDistrict())
             .categoryMain(restaurant.getCategoryMain())
             .rating(restaurant.getRating())
             .ratingCount(restaurant.getReviews().size())
