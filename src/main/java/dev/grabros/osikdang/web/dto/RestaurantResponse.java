@@ -45,4 +45,17 @@ public class RestaurantResponse {
             .image(null)
             .build();
     }
+
+    public static RestaurantResponse of(Restaurant restaurant) {
+        return RestaurantResponse.builder()
+            .id(restaurant.getId())
+            .name(restaurant.getName())
+            .addressDistrict(restaurant.getAddressDistrict())
+            .categoryMain(restaurant.getCategoryMain())
+            .rating(restaurant.getRating())
+            .ratingCount(restaurant.getReviews().size())
+            .distance(0.0)
+            .image(null)
+            .build();
+    }
 }
