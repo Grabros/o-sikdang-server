@@ -19,12 +19,28 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
-    @GetMapping("/{category}")
-    public ResponseEntity<RestaurantResponse> viewCategorizedRestaurantsSortedByRating(
-        @PathVariable String category,
+    @GetMapping("")
+    public ResponseEntity<RestaurantResponse> viewNearByRestaurants(
+        @RequestParam(value = "distance", required = false, defaultValue = "0.5") Double distance,
         @RequestParam(value = "x", required = false, defaultValue = "0") Double x,
         @RequestParam(value = "y", required = false, defaultValue = "0") Double y) {
+
         return new ResponseEntity(
-            restaurantService.getCategorizedRestaurantsSortedByRating(category, new Coordinate(x, y)), HttpStatus.OK);
+            restaurantService.getNearByRestaurants(new Coordinate(x, y), distance), HttpStatus.OK);
+    }
+
+    @GetMapping("/category/{categoryCode}")
+    public ResponseEntity<RestaurantResponse> viewCategorizedRestaurantsSortedByRating(
+        @PathVariable String categoryCode,
+        @RequestParam(value = "x", required = false, defaultValue = "0") Double x,
+        @RequestParam(value = "y", required = false, defaultValue = "0") Double y) {
+
+        return new ResponseEntity(
+            restaurantService.getCategorizedRestaurantsSortedByRating(categoryCode, new Coordinate(x, y)), HttpStatus.OK);
+    }
+
+    @GetMapping("/district/{district}")
+    public ResponseEntity<RestaurantResponse> viewNearByRestaurantsByDistrict(@PathVariable String district) {
+        return new ResponseEntity(restaurantService.getNearByRestaurantsByDistrict(district), HttpStatus.OK);
     }
 }

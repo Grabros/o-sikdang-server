@@ -17,6 +17,9 @@ public class RestaurantGeometryRepository {
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * distance unit : km
+     */
     public List<Restaurant> getNearByRestaurants(Coordinate coordinate, Double distance) {
         Location northEast = GeometryUtil
             .calculate(coordinate.x, coordinate.y, distance, Direction.NORTHEAST.getBearing());
@@ -34,7 +37,8 @@ public class RestaurantGeometryRepository {
             + "r.category, r.category_code, r.category_industry, r.category_main, r.category_sub, "
             + "r.point, r.name, r.zip_code, r.rating "
             + "FROM restaurant AS r "
-            + "WHERE MBRContains(ST_LINESTRINGFROMTEXT(" + pointFormat + ", r.point)", Restaurant.class)
+            + "WHERE MBRContains(ST_LINESTRINGFROMTEXT(" + pointFormat + ", r.point) "
+            + "ORDER BY RAND()", Restaurant.class)
             .setMaxResults(10);
 
         List<Restaurant> restaurants = query.getResultList();

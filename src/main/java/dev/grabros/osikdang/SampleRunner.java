@@ -18,13 +18,13 @@ public class SampleRunner implements ApplicationRunner {
     @Transactional(readOnly = true)
     @Override
     public void run(ApplicationArguments args) {
-        final List<Restaurant> nearRestaurants = restaurantService
-            .getNearByRestaurants(37.4901548250937, 127.030767490957, 0.1);
-
-        for (Restaurant restaurant : nearRestaurants) {
-            System.out.println(
-                restaurant.getName() + " / " + restaurant.getCategorySub() + " / " + restaurant
-                    .getAddressOld() + " / " + restaurant.getPoint());
-        }
+//        final List<Restaurant> nearRestaurants = restaurantService
+//            .getNearByRestaurants(37.4901548250937, 127.030767490957, 0.1);
+//
+//        for (Restaurant restaurant : nearRestaurants) {
+//            System.out.println(
+//                restaurant.getName() + " / " + restaurant.getCategorySub() + " / " + restaurant
+//                    .getAddressOld() + " / " + restaurant.getPoint());
+//        }
     }
 }
