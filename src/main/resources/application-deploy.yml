@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mysql://dev-henry.ckp6apk75dyc.ap-northeast-2.rds.amazonaws.com:3306/osikdang
+    username: admin
+    password: 12345678
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    database: mysql
+    database-platform: org.hibernate.spatial.dialect.mysql.MySQL56InnoDBSpatialDialect
+
+logging:
+  level:
+    sql: debug
+#    org.hibernate.SQL: debug
+#    org.hiberate.type: trace
