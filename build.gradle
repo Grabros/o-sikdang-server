@@ -39,6 +39,7 @@ dependencies {
 //    testImplementation 'org.springframework.security:spring-security-test'
     compile group: 'org.hibernate', name: 'hibernate-spatial', version: '5.4.20.Final'
 //    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.1'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.2.RELEASE'
 }
 
 test {
