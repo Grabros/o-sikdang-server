@@ -21,7 +21,7 @@ public class RestaurantResponse {
     private String image;
 
     @Builder
-    public RestaurantResponse(Long id, String name, String addressDistrict, String categoryMain,
+    protected RestaurantResponse(Long id, String name, String addressDistrict, String categoryMain,
         Double rating, int ratingCount, Double distance, String image) {
         this.id = id;
         this.name = name;
