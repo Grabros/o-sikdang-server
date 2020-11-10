@@ -21,7 +21,7 @@ public class RestaurantResponse {
     private String image;
 
     @Builder
-    public RestaurantResponse(Long id, String name, String addressDistrict, String categoryMain,
+    protected RestaurantResponse(Long id, String name, String addressDistrict, String categoryMain,
         Double rating, int ratingCount, Double distance, String image) {
         this.id = id;
         this.name = name;
@@ -42,6 +42,19 @@ public class RestaurantResponse {
             .rating(restaurant.getRating())
             .ratingCount(restaurant.getReviews().size())
             .distance(restaurant.getDistance(coordinate))
+            .image(null)
+            .build();
+    }
+
+    public static RestaurantResponse of(Restaurant restaurant) {
+        return RestaurantResponse.builder()
+            .id(restaurant.getId())
+            .name(restaurant.getName())
+            .addressDistrict(restaurant.getAddressDistrict())
+            .categoryMain(restaurant.getCategoryMain())
+            .rating(restaurant.getRating())
+            .ratingCount(restaurant.getReviews().size())
+            .distance(0.0)
             .image(null)
             .build();
     }

@@ -36,9 +36,8 @@ public class RestaurantService {
     public List<RestaurantResponse> getNearByRestaurantsByDistrict(String district) {
         Page<Restaurant> restaurants = restaurantRepository
             .findAllByAddressDistrict(district, PageRequest.of(0, 7));
-        Coordinate coordinate = new Coordinate(0, 0);
         return restaurants.stream()
-            .map(r -> RestaurantResponse.of(r, coordinate))
+            .map(r -> RestaurantResponse.of(r))
             .collect(Collectors.toList());
     }
 
