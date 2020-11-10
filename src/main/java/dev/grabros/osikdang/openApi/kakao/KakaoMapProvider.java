@@ -4,6 +4,10 @@ import dev.grabros.osikdang.global.error.exception.openApi.InvalidRequestExcepti
 import dev.grabros.osikdang.global.error.exception.openApi.KakaoApiException;
 import dev.grabros.osikdang.openApi.OpenApiProvider;
 import dev.grabros.osikdang.openApi.kakao.response.KakaoMap;
+import dev.grabros.osikdang.web.dto.AddressInformation;
+import dev.grabros.osikdang.web.dto.AddressResponse;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Coordinate;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,5 +44,13 @@ public class KakaoMapProvider implements OpenApiProvider {
             .block();
 
         return kakaoMap;
+    }
+
+    public AddressResponse getAddressInformation(Coordinate coordinate) {
+        KakaoMap kakaoMap = requestAddressByCoordinate(coordinate);
+        List<AddressInformation> addressInformation = kakaoMap.getKakaoMapAddresses().stream()
+            .map(k -> AddressInformation.of(k))
+            .collect(Collectors.toList());
+        return AddressResponse.of(addressInformation);
     }
 }
