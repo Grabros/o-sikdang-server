@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class KakaoMapDocument {
+public class KakaoMapAddress {
 
     @JsonProperty("address_name")
     private String address;

@@ -11,5 +11,5 @@ import lombok.ToString;
 public class KakaoMap {
 
     @JsonProperty("documents")
-    private List<KakaoMapDocument> kakaoMapDocuments = new ArrayList<>();
+    private List<KakaoMapAddress> kakaoMapAddresses = new ArrayList<>();
 }
