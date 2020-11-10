@@ -16,3 +16,5 @@ logging:
     sql: debug
 #    org.hibernate.SQL: debug
 #    org.hiberate.type: trace
+
+KAKAO_REST_API_KEY: e09153b8b0a5b67fe003a5eab6637f3a
