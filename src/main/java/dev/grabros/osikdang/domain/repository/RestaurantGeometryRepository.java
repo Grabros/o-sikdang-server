@@ -19,17 +19,19 @@ public class RestaurantGeometryRepository {
 
     /**
      * distance unit : km
+     * x : latitude - 127.xxx
+     * y : longitude - 37.xxx
      */
     public List<Restaurant> getNearByRestaurants(Coordinate coordinate, Double distance) {
         Location northEast = GeometryUtil
-            .calculate(coordinate.x, coordinate.y, distance, Direction.NORTHEAST.getBearing());
+            .calculate(coordinate.y, coordinate.x, distance, Direction.NORTHEAST.getBearing());
         Location southWest = GeometryUtil
-            .calculate(coordinate.x, coordinate.y, distance, Direction.SOUTHWEST.getBearing());
+            .calculate(coordinate.y, coordinate.x, distance, Direction.SOUTHWEST.getBearing());
 
-        double x1 = northEast.getLatitude();
-        double y1 = northEast.getLongitude();
-        double x2 = southWest.getLatitude();
-        double y2 = southWest.getLongitude();
+        double x1 = northEast.getLongitude();
+        double y1 = northEast.getLatitude();
+        double x2 = southWest.getLongitude();
+        double y2 = southWest.getLatitude();
 
         String pointFormat = String.format("'LINESTRING(%f %f, %f %f)')", x1, y1, x2, y2);
         Query query = em.createNativeQuery("SELECT r.id, r.address, r.address_city, "
