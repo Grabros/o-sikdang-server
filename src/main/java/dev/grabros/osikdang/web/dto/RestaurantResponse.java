@@ -1,6 +1,7 @@
 package dev.grabros.osikdang.web.dto;
 
 import dev.grabros.osikdang.domain.entity.restaurant.Restaurant;
+import dev.grabros.osikdang.global.util.geometry.Point;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,11 +19,12 @@ public class RestaurantResponse {
     private Double rating;
     private int ratingCount;
     private Double distance;
+    private Point point;
     private String image;
 
     @Builder
     protected RestaurantResponse(Long id, String name, String addressDistrict, String categoryMain,
-        Double rating, int ratingCount, Double distance, String image) {
+        Double rating, int ratingCount, Double distance, Point point, String image) {
         this.id = id;
         this.name = name;
         this.addressDistrict = addressDistrict;
@@ -30,6 +32,7 @@ public class RestaurantResponse {
         this.rating = rating;
         this.ratingCount = ratingCount;
         this.distance = distance;
+        this.point = point;
         this.image = image;
     }
 
@@ -42,6 +45,7 @@ public class RestaurantResponse {
             .rating(restaurant.getRating())
             .ratingCount(restaurant.getReviews().size())
             .distance(restaurant.getDistance(coordinate))
+            .point(Point.of(restaurant.getPoint().getX(), restaurant.getPoint().getY()))
             .image(null)
             .build();
     }
@@ -55,6 +59,7 @@ public class RestaurantResponse {
             .rating(restaurant.getRating())
             .ratingCount(restaurant.getReviews().size())
             .distance(0.0)
+            .point(Point.of(restaurant.getPoint().getX(), restaurant.getPoint().getY()))
             .image(null)
             .build();
     }
